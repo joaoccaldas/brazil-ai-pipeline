@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>João Caldas | IA & Eficiência Multinacional</title>
+    <title>NEXO | IA & Eficiência Multinacional</title>
     <style>
         :root {
-            --bg: #0a0a0a;
+            --bg: #050505;
             --text: #ffffff;
             --accent: #0070f3;
-            --secondary: #666;
+            --secondary: #888;
+            --card-bg: #111;
+            --border: #222;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
@@ -24,63 +26,125 @@
         }
         header {
             width: 100%;
-            max-width: 800px;
-            padding: 4rem 2rem;
-            text-align: center;
+            max-width: 900px;
+            padding: 6rem 2rem 4rem;
+            text-align: left;
         }
-        h1 { font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: -0.05rem; }
-        .tagline { color: var(--secondary); font-size: 1.2rem; }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+        h1 { 
+            font-size: 3.5rem; 
+            margin: 0; 
+            letter-spacing: -0.1rem; 
+            line-height: 1;
+            font-weight: 800;
+        }
+        .tagline { 
+            color: var(--secondary); 
+            font-size: 1.4rem; 
+            max-width: 600px;
+            margin-top: 1rem;
+        }
         main {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             padding: 2rem;
         }
+        .section-title {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
         .post-card {
-            border: 1px solid #333;
-            padding: 2rem;
-            border-radius: 12px;
-            transition: border-color 0.2s;
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: all 0.3s ease;
             text-decoration: none;
             color: inherit;
             display: block;
             margin-bottom: 2rem;
+            background: var(--card-bg);
         }
-        .post-card:hover { border-color: var(--accent); }
-        .post-card h2 { margin-top: 0; color: var(--accent); }
+        .post-card:hover { 
+            border-color: var(--accent); 
+            transform: translateY(-4px);
+            background: #161616;
+        }
+        .post-card h2 { 
+            margin: 0 0 1rem; 
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
         .badge {
             background: var(--accent);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
             display: inline-block;
+            text-transform: uppercase;
         }
-        footer { padding: 4rem; color: #444; font-size: 0.9rem; }
+        .description {
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .read-more {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        footer { 
+            padding: 6rem 2rem; 
+            color: #333; 
+            font-size: 0.8rem; 
+            text-align: center;
+            width: 100%;
+            border-top: 1px solid var(--border);
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .post-card { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>João Caldas</h1>
-        <p class="tagline">O Cérebro da Eficiência: IA, Finanças e o Futuro do Trabalho.</p>
+        <div class="logo">NEXO</div>
+        <h1>Inteligência que conecta.</h1>
+        <p class="tagline">Onde a eficiência global encontra a escala brasileira. Liderado por João Caldas.</p>
     </header>
     <main id="content">
+        <div class="section-title">Últimas Análises</div>
+        
         <a href="deepseek-open-source.html" class="post-card">
-            <span class="badge">NOVO</span>
-            <h2>DeepSeek & Qwen: O Fim do Imposto em Dólar</h2>
-            <p>Por que os novos modelos Open Weights são a maior oportunidade de escala para empresas brasileiras este ano...</p>
-            <p><small>Leia mais &rarr;</small></p>
+            <span class="badge">Estratégico</span>
+            <h2>O Fim do Imposto em Dólar na IA</h2>
+            <p class="description">Por que os novos modelos Open Weights como DeepSeek e Qwen são a maior oportunidade de escala para empresas brasileiras em 2026.</p>
+            <span class="read-more">Ler análise completa &rarr;</span>
         </a>
 
         <a href="o-fim-da-era-do-esforco.html" class="post-card">
-            <span class="badge" style="background: #333;">REPLY</span>
-            <h2>O Fim da Era do Esforço</h2>
-            <p>Como Agentes de IA Estão Construindo Empresas no Brasil Enquanto Você Dorme...</p>
-            <p><small>Leia mais &rarr;</small></p>
+            <span class="badge" style="background: #333;">Técnico</span>
+            <h2>A Era do 'Night Sprint'</h2>
+            <p class="description">Como agentes autônomos estão construindo empresas inteiras enquanto você dorme. A morte do custo de programação.</p>
+            <span class="read-more">Ler análise completa &rarr;</span>
         </a>
     </main>
     <footer>
-        &copy; 2026 João Caldas. Built by Nova.
+        &copy; 2026 NEXO by João Caldas. Arquitetado na Suécia para o mundo.
     </footer>
 </body>
 </html>
