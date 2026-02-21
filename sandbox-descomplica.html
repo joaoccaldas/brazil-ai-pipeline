@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descomplicador de Vida | NEXO Sandbox</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .simplifier-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #111;
+            border-radius: 15px;
+            border: 2px solid #333;
+            color: #fff;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            background: #000;
+            color: #0f0;
+            border: 1px solid #444;
+            padding: 15px;
+            font-family: sans-serif;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #fff;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .output {
+            margin-top: 30px;
+            padding: 20px;
+            background: #222;
+            border-radius: 8px;
+            display: none;
+        }
+        .output h3 { margin-top: 0; color: #0f0; font-size: 0.9em; }
+        .loading { display: none; text-align: center; margin: 10px 0; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="aurora"></div>
+    <nav><a href="index.html" class="logo">NEXO</a></nav>
+
+    <div class="simplifier-container">
+        <h1>Descomplicador de Vida</h1>
+        <p style="opacity: 0.7; margin-bottom: 20px;">Colou, simplificou. O que esse texto quer de você?</p>
+
+        <textarea id="input-text" placeholder="Cole aqui aquele texto chato do banco, do governo, ou aquele contrato que ninguém entende..."></textarea>
+        
+        <button onclick="simplify()">Traduzir para o Português Real &rarr;</button>
+        <div id="loading" class="loading">Desmontando a burocracia...</div>
+
+        <div id="result" class="output">
+            <h3>O QUE REALMENTE ESTÃO DIZENDO:</h3>
+            <p id="simple-text" style="font-size: 1.1em; line-height: 1.6;"></p>
+            <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
+            <h3>O QUE VOCÊ PRECISA FAZER:</h3>
+            <ul id="action-items" style="padding-left: 20px; color: #ccc;"></ul>
+        </div>
+    </div>
+
+    <script>
+        function simplify() {
+            const text = document.getElementById('input-text').value;
+            if (!text) return alert("Copia o texto chato e cola aqui primeiro!");
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+
+            // Simulação de processamento (já que estamos no sandbox puro sem backend direto aqui)
+            // Em uma versão real, isso chamaria uma API. Aqui, vamos usar lógica de "arquétipos" para o demo.
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('result').style.display = 'block';
+
+                const resultText = document.getElementById('simple-text');
+                const actions = document.getElementById('action-items');
+                
+                // Lógica de "faz de conta" baseada em palavras-chave para o sandbox ser interativo
+                if (text.toLowerCase().includes("contrato") || text.toLowerCase().includes("cláusula")) {
+                    resultText.innerText = "Eles estão se protegendo caso algo dê errado e cobrando taxas que você não percebeu.";
+                    actions.innerHTML = "<li>Confira o valor da multa.</li><li>Veja se o prazo de cancelamento é abusivo.</li>";
+                } else if (text.toLowerCase().includes("banco") || text.toLowerCase().includes("tarifa")) {
+                    resultText.innerText = "O banco quer te cobrar por um serviço que você provavelmente não precisa ou já paga.";
+                    actions.innerHTML = "<li>Ligue no SAC e peça o estorno.</li><li>Peça o pacote de serviços essenciais (é grátis por lei).</li>";
+                } else {
+                    resultText.innerText = "Basicamente, estão usando palavras difíceis para parecerem importantes, mas a mensagem é simples: você precisa pagar algo ou entregar um documento.";
+                    actions.innerHTML = "<li>Não assine nada sem entender o valor final.</li><li>Mande um email perguntando 'O que eu ganho com isso?'.</li>";
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
