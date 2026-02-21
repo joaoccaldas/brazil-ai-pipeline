@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXO Sandbox | Calculadora de ROI de IA</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .sandbox-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #000;
+            border: 1px solid #444;
+            color: #fff;
+        }
+        .result-box {
+            background: #004d40;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .result-value {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NEXO <span style="color: #666;">Sandbox</span></h1>
+        <nav><a href="index.html">← Voltar para o Hub</a></nav>
+    </header>
+    
+    <main>
+        <section class="sandbox-card">
+            <h2>Calculadora de ROI de IA (Brasil Business)</h2>
+            <p>Descubra quanto dinheiro e tempo sua empresa está perdendo por não automatizar processos repetitivos.</p>
+            
+            <label>Número de funcionários em tarefas repetitivas:</label>
+            <input type="number" id="staff" value="1" oninput="calculate()">
+            
+            <label>Salário médio mensal (BRL):</label>
+            <input type="number" id="salary" value="4000" oninput="calculate()">
+            
+            <label>Horas perdidas por dia/funcionário em tarefas manuais:</label>
+            <input type="number" id="hours" value="2" oninput="calculate()">
+
+            <div class="result-box">
+                <p>Economia Potencial Anual:</p>
+                <span class="result-value" id="roi">R$ 24.000</span>
+                <p id="time-saved">~480 horas recuperadas/ano</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function calculate() {
+            const staff = document.getElementById('staff').value;
+            const salary = document.getElementById('salary').value;
+            const hours = document.getElementById('hours').value;
+            
+            const hourlyRate = (salary * 1.3) / 160; // Incluindo encargos simples
+            const dailySaving = staff * hours * hourlyRate;
+            const annualSaving = dailySaving * 22 * 12;
+            const annualHours = staff * hours * 22 * 12;
+
+            document.getElementById('roi').innerText = 'R$ ' + Math.round(annualSaving).toLocaleString('pt-BR');
+            document.getElementById('time-saved').innerText = '~' + Math.round(annualHours) + ' horas recuperadas/ano';
+        }
+    </script>
+</body>
+</html>

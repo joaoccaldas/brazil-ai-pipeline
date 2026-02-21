@@ -31,8 +31,8 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: -1;
     background:
         radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.15), transparent 25%),
@@ -50,6 +50,8 @@ nav {
     align-items: center;
     position: fixed;
     top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     background: rgba(0,0,0,0.8);
     backdrop-filter: blur(10px);
     z-index: 100;
@@ -280,7 +282,7 @@ footer {
 
 @media (max-width: 600px) {
     h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     .post-card {
         padding: 1.5rem;
