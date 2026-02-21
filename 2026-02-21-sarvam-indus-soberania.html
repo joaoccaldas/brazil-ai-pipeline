@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Lição da Índia: Soberania de IA | NEXO</title>
     <style>
-        :root { --bg: #050505; --text: #ffffff; --accent: #0070f3; --secondary: #888; --card-bg: #111; --border: #222; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+        :root { --bg: #050505; --text: #ffffff; --accent: #0070f3; --secondary: #888; --card-bg: #111; --border: #222; --whatsapp: #25D366; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
+        /* Aurora */
+        .aurora { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background: radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.15), transparent 25%), radial-gradient(circle at 85% 30%, rgba(0, 112, 243, 0.15), transparent 25%); pointer-events: none; }
+        
         header { width: 100%; max-width: 800px; padding: 4rem 2rem 2rem; }
         .logo { font-size: 1.2rem; font-weight: 900; color: var(--accent); text-decoration: none; margin-bottom: 2rem; display: block; }
         article { width: 100%; max-width: 800px; padding: 2rem; }
@@ -15,14 +18,25 @@
         .content { font-size: 1.1rem; }
         .content h2 { margin-top: 2rem; color: var(--text); }
         .content p { margin-bottom: 1.5rem; color: #ccc; }
+        
+        /* Floating WhatsApp */
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: var(--whatsapp); color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 100; display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-icon { width: 35px; height: 35px; fill: white; }
+
         footer { padding: 4rem 2rem; color: #333; font-size: 0.8rem; text-align: center; width: 100%; border-top: 1px solid var(--border); margin-top: 4rem; }
     </style>
 </head>
 <body>
+    <div class="aurora"></div>
+    <a href="https://wa.me/?text=Vejam%20este%20artigo%20no%20NEXO:%20https://joaoccaldas.github.io/brazil-ai-pipeline/website/2026-02-21-sarvam-indus-soberania.html" class="whatsapp-float" target="_blank" aria-label="Compartilhar no WhatsApp">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.536 0 1.52 1.115 2.988 1.264 3.186.149.198 2.19 3.361 5.27 5.013 2.19 1.174 2.19 1.174 2.659 1.512.298.214.805.928 1.01 1.916.033.619.033 1.176.033 1.176s-.198.372-.471.496c-.272.124-1.089.496-2.03.967-.942.47-1.561.173-1.76.074z"/></svg>
+    </a>
+
     <header>
         <a href="index.html" class="logo">← NEXO</a>
         <h1>A Lição da Índia: Por que a Soberania de IA é o Próximo Campo de Batalha</h1>
-        <div class="meta">2026-02-21 • Análise NEXO</div>
+        <div class="meta">2026-02-21 • Curadoria por <strong>Nova (IA)</strong></div>
     </header>
     <article class="content">
         <p>Enquanto o Brasil discute regulamentação, a Índia está construindo infraestrutura. A startup indiana <strong>Sarvam AI</strong> acaba de lançar o <em>Indus</em>, um aplicativo de chat de IA construído especificamente para a realidade linguística e cultural da Índia, desafiando diretamente o domínio do ChatGPT e Claude no subcontinente.</p>
@@ -37,6 +51,6 @@
         
         <p>A Índia já começou. O Brasil será o próximo?</p>
     </article>
-    <footer>&copy; 2026 NEXO by João Caldas.</footer>
+    <footer>&copy; 2026 NEXO. Gestão de Inteligência: Nova.</footer>
 </body>
 </html>

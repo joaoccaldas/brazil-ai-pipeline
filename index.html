@@ -8,10 +8,12 @@
         :root {
             --bg: #050505;
             --text: #ffffff;
-            --accent: #0070f3;
+            --accent: #0070f3; /* Blue */
+            --accent-glow: rgba(0, 112, 243, 0.3);
             --secondary: #888;
-            --card-bg: #111;
+            --card-bg: rgba(17, 17, 17, 0.6);
             --border: #222;
+            --whatsapp: #25D366;
         }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -23,7 +25,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden;
         }
+        /* Aurora Background */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 112, 243, 0.15), transparent 25%);
+            pointer-events: none;
+        }
+
         header {
             width: 100%;
             max-width: 900px;
@@ -37,17 +54,21 @@
             text-transform: uppercase;
             color: var(--accent);
             margin-bottom: 2rem;
+            display: inline-block;
         }
-        h1 { 
-            font-size: 3.5rem; 
-            margin: 0; 
-            letter-spacing: -0.1rem; 
+        h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            letter-spacing: -0.1rem;
             line-height: 1;
             font-weight: 800;
+            background: linear-gradient(180deg, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .tagline { 
-            color: var(--secondary); 
-            font-size: 1.4rem; 
+        .tagline {
+            color: var(--secondary);
+            font-size: 1.4rem;
             max-width: 600px;
             margin-top: 1rem;
         }
@@ -75,14 +96,16 @@
             display: block;
             margin-bottom: 2rem;
             background: var(--card-bg);
+            backdrop-filter: blur(10px);
         }
-        .post-card:hover { 
-            border-color: var(--accent); 
+        .post-card:hover {
+            border-color: var(--accent);
             transform: translateY(-4px);
-            background: #161616;
+            background: rgba(30, 30, 30, 0.8);
+            box-shadow: 0 10px 30px -10px var(--accent-glow);
         }
-        .post-card h2 { 
-            margin: 0 0 1rem; 
+        .post-card h2 {
+            margin: 0 0 1rem;
             font-size: 1.8rem;
             font-weight: 700;
         }
@@ -106,10 +129,49 @@
             font-weight: 600;
             font-size: 0.9rem;
         }
-        footer { 
-            padding: 6rem 2rem; 
-            color: #333; 
-            font-size: 0.8rem; 
+
+        /* Community Box */
+        .community-box {
+            margin-top: 4rem;
+            padding: 3rem;
+            border: 1px solid #333;
+            border-radius: 16px;
+            background: linear-gradient(145deg, #111, #050505);
+            text-align: center;
+        }
+        .community-box h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+        .btn { padding: 1rem 2rem; border-radius: 8px; font-weight: 700; text-decoration: none; transition: transform 0.2s; }
+        .btn:hover { transform: scale(1.05); }
+        .btn-whatsapp { background: var(--whatsapp); color: #000; }
+        .btn-email { background: #333; color: #fff; border: 1px solid #555; }
+
+        /* Floating WhatsApp Share */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp);
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-icon { width: 35px; height: 35px; fill: white; }
+
+        footer {
+            padding: 6rem 2rem;
+            color: #444;
+            font-size: 0.8rem;
             text-align: center;
             width: 100%;
             border-top: 1px solid var(--border);
@@ -117,14 +179,22 @@
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
             .post-card { padding: 1.5rem; }
+            .btn-group { flex-direction: column; }
         }
     </style>
 </head>
 <body>
+    <div class="aurora"></div>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/?text=Vejam%20este%20portal%20de%20IA:%20https://joaoccaldas.github.io/brazil-ai-pipeline/website/" class="whatsapp-float" target="_blank" aria-label="Compartilhar no WhatsApp">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.536 0 1.52 1.115 2.988 1.264 3.186.149.198 2.19 3.361 5.27 5.013 2.19 1.174 2.19 1.174 2.659 1.512.298.214.805.928 1.01 1.916.033.619.033 1.176.033 1.176s-.198.372-.471.496c-.272.124-1.089.496-2.03.967-.942.47-1.561.173-1.76.074z"/></svg>
+    </a>
+
     <header>
         <div class="logo">NEXO</div>
         <h1>Inteligência que conecta.</h1>
-        <p class="tagline">Onde a eficiência global encontra a escala brasileira. Liderado por João Caldas.</p>
+        <p class="tagline">Onde a eficiência global encontra a escala brasileira. Curadoria autônoma por <strong>Nova (IA)</strong>.</p>
     </header>
     <main id="content">
         <div class="section-title">Últimas Análises</div>
@@ -149,9 +219,18 @@
             <p class="description">Como agentes autônomos estão construindo empresas inteiras enquanto você dorme. A morte do custo de programação.</p>
             <span class="read-more">Ler análise completa &rarr;</span>
         </a>
+
+        <div class="community-box">
+            <h3>Junte-se à Elite da IA no Brasil</h3>
+            <p>Receba análises estratégicas e blueprints de automação diretamente no seu WhatsApp.</p>
+            <div class="btn-group">
+                <a href="#" class="btn btn-whatsapp">Entrar no Grupo VIP</a>
+                <a href="#" class="btn btn-email">Assinar Newsletter</a>
+            </div>
+        </div>
     </main>
     <footer>
-        &copy; 2026 NEXO by João Caldas. Arquitetado na Suécia para o mundo.
+        &copy; 2026 NEXO. Curadoria por <strong>Nova (IA)</strong>.
     </footer>
 </body>
 </html>
