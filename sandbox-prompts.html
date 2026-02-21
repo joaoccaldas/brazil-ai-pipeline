@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Prompts Estratégicos | NEXO Sandbox</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .sandbox-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        select, textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .prompt-output {
+            background: #000;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            font-family: monospace;
+            white-space: pre-wrap;
+            display: none;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #444;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button.generate {
+            background: linear-gradient(135deg, #ff00ff, #8a2be2);
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="aurora"></div>
+    <nav>
+        <a href="index.html" class="logo">NEXO</a>
+    </nav>
+
+    <div class="sandbox-container">
+        <h1>Gerador de Prompts Estratégicos</h1>
+        <p style="text-align: center; opacity: 0.7; margin-bottom: 30px;">
+            Transforme ideias vagas em comandos de alta performance para IA.
+        </p>
+
+        <label>Qual seu objetivo?</label>
+        <select id="goal">
+            <option value="audit">Auditar Processo Ineficiente</option>
+            <option value="strategy">Criar Plano de Expansão (Brasil)</option>
+            <option value="negotiation">Simular Negociação Difícil</option>
+            <option value="automation">Identificar Gargalos de Automação</option>
+        </select>
+
+        <label>Descreva brevemente o contexto da sua empresa:</label>
+        <textarea id="context" rows="4" placeholder="Ex: Somos uma distribuidora de médio porte em São Paulo enfrentando atrasos na logística..."></textarea>
+
+        <button class="generate" onclick="generatePrompt()">Gerar Prompt Mestre &rarr;</button>
+
+        <div id="output-container" class="prompt-output">
+            <span class="copy-btn" onclick="copyPrompt()">Copiar</span>
+            <code id="prompt-text"></code>
+        </div>
+    </div>
+
+    <script>
+        function generatePrompt() {
+            const goal = document.getElementById('goal').value;
+            const context = document.getElementById('context').value;
+            if (!context) return alert('Por favor, descreva o contexto!');
+
+            let prompt = "";
+            if (goal === 'audit') {
+                prompt = `Aja como um Consultor de Operações Lean. Analise o seguinte cenário: "${context}". Identifique os 3 principais pontos de desperdício (Muda) e sugira como uma ferramenta de IA (como o Claude ou ChatGPT) poderia eliminar cada um deles. Foque em resultados mensuráveis em 30 dias.`;
+            } else if (goal === 'strategy') {
+                prompt = `Você é um Estrategista de Mercado especializado no Brasil. Dado o cenário "${context}", elabore um plano tático de 5 passos para expansão nacional, considerando as barreiras logísticas e tributárias locais. Use a análise SWOT para fundamentar cada passo.`;
+            } else if (goal === 'negotiation') {
+                prompt = `Aja como um Negociador Especialista em Teoria dos Jogos. Estou enfrentando este desafio: "${context}". Simule os argumentos da outra parte e crie uma árvore de decisão para eu alcançar o fechamento ideal. Liste as 5 "Golden Questions" que devo fazer.`;
+            } else if (goal === 'automation') {
+                prompt = `Aja como um Arquiteto de Soluções de IA. No contexto de "${context}", mapeie o fluxo de trabalho atual e indique exatamente onde um Agente de IA Autônomo traria o maior ROI (Retorno sobre Investimento). Priorize tarefas de baixo risco e alto volume.`;
+            }
+
+            document.getElementById('prompt-text').innerText = prompt;
+            document.getElementById('output-container').style.display = 'block';
+        }
+
+        function copyPrompt() {
+            const text = document.getElementById('prompt-text').innerText;
+            navigator.clipboard.writeText(text);
+            alert('Prompt copiado para a área de transferência!');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de ROI de IA | NEXO Sandbox</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .sandbox-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        h1 { text-align: center; margin-bottom: 30px; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; opacity: 0.8; }
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, #007aff, #0051af);
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s;
+        }
+        button:active { transform: scale(0.98); }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(0, 255, 127, 0.1);
+            border: 1px solid rgba(0, 255, 127, 0.2);
+            display: none;
+        }
+        .result h3 { margin-top: 0; color: #00ff7f; }
+    </style>
+</head>
+<body>
+    <div class="aurora"></div>
+    <nav>
+        <a href="index.html" class="logo">NEXO</a>
+    </nav>
+
+    <div class="sandbox-container">
+        <h1>ROI de IA (Brasil)</h1>
+        <p style="text-align: center; opacity: 0.7; margin-bottom: 30px;">
+            Simule o impacto financeiro da automação na sua operação brasileira.
+        </p>
+
+        <div class="input-group">
+            <label>Custo mensal por funcionário (R$)</label>
+            <input type="number" id="cost" placeholder="Ex: 5000">
+        </div>
+        <div class="input-group">
+            <label>Horas mensais gastas em tarefas repetitivas</label>
+            <input type="number" id="hours" placeholder="Ex: 40">
+        </div>
+        <div class="input-group">
+            <label>% de eficiência ganha com IA</label>
+            <input type="number" id="efficiency" placeholder="Ex: 60">
+        </div>
+
+        <button onclick="calculate()">Calcular Impacto Anual</button>
+
+        <div id="result" class="result">
+            <h3>Resultado Estimado</h3>
+            <p id="savings-text"></p>
+            <p style="font-size: 0.8em; opacity: 0.6; margin-top: 10px;">
+                *Considerando redução de churn operacional e aumento de precisão.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const cost = document.getElementById('cost').value;
+            const hours = document.getElementById('hours').value;
+            const efficiency = document.getElementById('efficiency').value;
+
+            if (!cost || !hours || !efficiency) return alert('Preencha todos os campos!');
+
+            const hourlyRate = cost / 160;
+            const monthlySavings = (hours * (efficiency / 100)) * hourlyRate;
+            const annualSavings = monthlySavings * 12;
+
+            document.getElementById('savings-text').innerHTML = 
+                `Sua empresa pode economizar aproximadamente <strong>R$ ${annualSavings.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong> por ano por funcionário focado.`;
+            
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
