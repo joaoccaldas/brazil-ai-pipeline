@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXO Sandbox | O Funcionário de 24 Horas</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .timeline-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            position: relative;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            opacity: 0.3;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        .timeline-item.active {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        .time {
+            font-family: monospace;
+            font-size: 1.5rem;
+            color: #00ff41;
+            width: 100px;
+            flex-shrink: 0;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #004d40;
+            border-radius: 50%;
+            margin: 0 20px;
+            position: relative;
+        }
+        .dot::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 5px;
+            width: 2px;
+            height: 40px;
+            background: #333;
+        }
+        .timeline-item:last-child .dot::after { display: none; }
+        .content-box {
+            background: #1a1a1a;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #333;
+            flex-grow: 1;
+        }
+        .content-box h3 { margin: 0 0 0.5rem 0; color: #fff; }
+        .content-box p { margin: 0; font-size: 0.9rem; color: #aaa; }
+        
+        .controls {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .btn-play {
+            background: #004d40;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NEXO <span style="color: #666;">Sandbox</span></h1>
+        <nav><a href="index.html">← Voltar para o Hub</a></nav>
+    </header>
+    
+    <main>
+        <div class="controls">
+            <h2>Simulador: Ciclo de 24h de um Agente de IA</h2>
+            <p>Clique em "Iniciar Ciclo" para ver o que a IA faz enquanto sua empresa dorme.</p>
+            <button class="btn-play" onclick="startCycle()">Iniciar Ciclo de 24h</button>
+        </div>
+
+        <div class="timeline-container" id="timeline">
+            <div class="timeline-item" id="item-1">
+                <div class="time">02:00</div>
+                <div class="dot"></div>
+                <div class="content-box">
+                    <h3>Varredura de Leads</h3>
+                    <p>O agente analisa 500 perfis no LinkedIn e extrai emails válidos de decisores.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" id="item-2">
+                <div class="time">05:00</div>
+                <div class="dot"></div>
+                <div class="content-box">
+                    <h3>Conciliação Bancária</h3>
+                    <p>Processamento automático de notas fiscais e atualização do fluxo de caixa no ERP.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" id="item-3">
+                <div class="time">09:00</div>
+                <div class="dot"></div>
+                <div class="content-box">
+                    <h3>Relatório Matinal</h3>
+                    <p>João (ou você) acorda com um resumo no WhatsApp: "3 reuniões agendadas, 12 pagamentos confirmados".</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" id="item-4">
+                <div class="time">14:00</div>
+                <div class="dot"></div>
+                <div class="content-box">
+                    <h3>Suporte em Tempo Real</h3>
+                    <p>Respostas instantâneas para dúvidas de clientes, fechando vendas sem intervenção humana.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" id="item-5">
+                <div class="time">22:00</div>
+                <div class="dot"></div>
+                <div class="content-box">
+                    <h3>Otimização de Conteúdo</h3>
+                    <p>Criação e agendamento de posts para o dia seguinte baseados nas tendências do momento.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let current = 0;
+        const items = document.querySelectorAll('.timeline-item');
+        
+        function startCycle() {
+            if(current >= items.length) {
+                items.forEach(i => i.classList.remove('active'));
+                current = 0;
+            }
+            
+            const interval = setInterval(() => {
+                if(current > 0) items[current-1].classList.remove('active');
+                if(current < items.length) {
+                    items[current].classList.add('active');
+                    current++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
