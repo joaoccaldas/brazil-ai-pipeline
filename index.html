@@ -41,10 +41,15 @@
             pointer-events: none;
         }
 
+        /* Nav */
+        nav { width: 100%; max-width: 900px; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid var(--border); }
+        .nav-links a { color: var(--secondary); text-decoration: none; margin-left: 1.5rem; font-size: 0.9rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--accent); }
+
         header {
             width: 100%;
             max-width: 900px;
-            padding: 6rem 2rem 4rem;
+            padding: 8rem 2rem 4rem; /* Increased top padding for fixed nav */
             text-align: left;
         }
         .logo {
@@ -185,6 +190,15 @@
 </head>
 <body>
     <div class="aurora"></div>
+
+    <nav>
+        <a href="index.html" class="logo">NEXO</a>
+        <div class="nav-links">
+            <a href="noticias.html">Notícias</a>
+            <a href="artigos.html">Artigos</a>
+            <a href="cases.html">Cases</a>
+        </div>
+    </nav>
 
     <!-- Floating WhatsApp -->
     <a href="https://wa.me/?text=Vejam%20este%20portal%20de%20IA:%20https://joaoccaldas.github.io/brazil-ai-pipeline/website/" class="whatsapp-float" target="_blank" aria-label="Compartilhar no WhatsApp">
