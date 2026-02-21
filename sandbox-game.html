@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXO Sandbox | O Jogo da Automação</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #game-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: center;
+            background: #111;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #004d40;
+        }
+        #box-container {
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .task-box {
+            width: 40px;
+            height: 40px;
+            background: #ff5252;
+            border-radius: 4px;
+            animation: fall 1s ease-in;
+        }
+        .task-box.automated {
+            background: #00ff41;
+            box-shadow: 0 0 10px #00ff41;
+        }
+        @keyframes fall {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .stats { font-family: monospace; font-size: 1.2rem; margin-bottom: 10px; }
+        .btn-game {
+            background: #004d40;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn-game:disabled { background: #333; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NEXO <span style="color: #666;">Sandbox</span></h1>
+        <nav><a href="index.html">← Voltar</a></nav>
+    </header>
+    
+    <main>
+        <div id="game-container">
+            <h2>O Jogo da Automação</h2>
+            <p>Clique nas tarefas vermelhas para resolvê-las manualmente, ou compre automação para resolvê-las para você!</p>
+            
+            <div class="stats">
+                Tarefas Pendentes: <span id="pending-count">0</span> | Lucro: R$ <span id="profit">0</span>
+            </div>
+            
+            <div id="box-container"></div>
+            
+            <button class="btn-game" id="buy-auto" onclick="buyAutomation()">Comprar Automação (R$ 50)</button>
+        </div>
+    </main>
+
+    <script>
+        let profit = 0;
+        let autoLevel = 0;
+        let pending = 0;
+        const container = document.getElementById('box-container');
+
+        function addTask() {
+            if (pending > 20) return;
+            pending++;
+            const box = document.createElement('div');
+            box.className = 'task-box';
+            box.onclick = () => solveTask(box, true);
+            container.appendChild(box);
+            updateStats();
+        }
+
+        function solveTask(box, manual) {
+            if (box.classList.contains('automated-done')) return;
+            pending--;
+            profit += manual ? 5 : 10;
+            box.style.opacity = '0';
+            setTimeout(() => box.remove(), 300);
+            updateStats();
+        }
+
+        function buyAutomation() {
+            if (profit >= 50) {
+                profit -= 50;
+                autoLevel++;
+                document.getElementById('buy-auto').innerText = `Automação Nível ${autoLevel} Ativa`;
+                document.getElementById('buy-auto').disabled = true;
+                startAuto();
+                updateStats();
+            }
+        }
+
+        function startAuto() {
+            setInterval(() => {
+                const boxes = document.querySelectorAll('.task-box:not(.automated)');
+                if (boxes.length > 0) {
+                    const target = boxes[0];
+                    target.classList.add('automated');
+                    setTimeout(() => solveTask(target, false), 500);
+                }
+            }, 1000);
+        }
+
+        function updateStats() {
+            document.getElementById('pending-count').innerText = pending;
+            document.getElementById('profit').innerText = profit;
+            document.getElementById('buy-auto').disabled = profit < 50 && autoLevel === 0;
+        }
+
+        setInterval(addTask, 2000);
+    </script>
+</body>
+</html>
