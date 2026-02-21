@@ -1,0 +1,300 @@
+:root {
+    --bg: #050505;
+    --text: #ffffff;
+    --accent: #0070f3; /* Blue */
+    --accent-glow: rgba(0, 112, 243, 0.3);
+    --secondary: #888;
+    --card-bg: rgba(17, 17, 17, 0.6);
+    --border: #222;
+    --whatsapp: #25D366;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* Aurora Background */
+.aurora {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.15), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(0, 112, 243, 0.15), transparent 25%);
+    pointer-events: none;
+}
+
+/* Nav */
+nav {
+    width: 100%;
+    max-width: 900px;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+header {
+    width: 100%;
+    max-width: 900px;
+    padding: 8rem 2rem 4rem;
+    text-align: left;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-block;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin: 1rem 0 0;
+    letter-spacing: -0.1rem;
+    line-height: 1.1;
+    font-weight: 800;
+    background: linear-gradient(180deg, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+    color: var(--secondary);
+    font-size: 1.4rem;
+    max-width: 600px;
+    margin-top: 1rem;
+}
+
+main {
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem;
+}
+
+.section-title {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+    color: var(--secondary);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+.post-card {
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    margin-bottom: 2rem;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+}
+
+.post-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    background: rgba(30, 30, 30, 0.8);
+    box-shadow: 0 10px 30px -10px var(--accent-glow);
+}
+
+.post-card h2 {
+    margin: 0 0 1rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.badge {
+    background: var(--accent);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.description {
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.read-more {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Article Content Styles */
+article {
+    width: 100%;
+    max-width: 900px;
+}
+
+article h1 {
+    margin-bottom: 2rem;
+}
+
+article p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+}
+
+article strong {
+    color: #fff;
+}
+
+/* Community Box */
+.community-box {
+    margin-top: 4rem;
+    padding: 3rem;
+    border: 1px solid #333;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #111, #050505);
+    text-align: center;
+}
+
+.community-box h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-whatsapp {
+    background: var(--whatsapp);
+    color: #000;
+}
+
+.btn-email {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+/* Floating WhatsApp Share */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--whatsapp);
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-icon {
+    width: 35px;
+    height: 35px;
+    fill: white;
+}
+
+footer {
+    padding: 6rem 2rem;
+    color: #444;
+    font-size: 0.8rem;
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    .post-card {
+        padding: 1.5rem;
+    }
+    .btn-group {
+        flex-direction: column;
+    }
+    nav {
+        padding: 1rem;
+    }
+    .nav-links {
+        gap: 0.8rem;
+    }
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+}
