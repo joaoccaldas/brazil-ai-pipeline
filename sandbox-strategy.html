@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Strategy Lab | NEXO</title>
+    <link rel="stylesheet" href="style.css?v=2">
+    <style>
+        #lab-container {
+            width: 100%;
+            background: #0a0a0a;
+            border: 1px solid #0070f3;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            font-family: 'Courier New', Courier, monospace;
+            position: relative;
+            overflow: hidden;
+        }
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 112, 243, 0.5);
+            box-shadow: 0 0 15px #0070f3;
+            animation: scan 4s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: -2px; }
+            100% { top: 100%; }
+        }
+        .lab-terminal {
+            color: #0070f3;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .trend-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid #0070f3;
+            margin: 1rem 0;
+            padding: 1rem;
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .advantage-score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 1rem;
+            display: block;
+        }
+        .pulse {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #0070f3;
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: pulse-glow 1.5s infinite;
+        }
+        @keyframes pulse-glow {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 112, 243, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 112, 243, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 112, 243, 0); }
+        }
+        button {
+            background: #0070f3;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .status-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="aurora"></div>
+    <nav>
+        <a href="index.html" class="logo">NEXO</a>
+        <div class="nav-links">
+            <a href="noticias.html">Notícias</a>
+            <a href="artigos.html">Artigos</a>
+            <a href="cases.html">Cases</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="logo">NEXO</div>
+        <h1>Nova Strategy Lab</h1>
+        <p class="tagline">Escaneamento autônomo de tendências globais para vantagem competitiva local.</p>
+    </header>
+
+    <main>
+        <div class="section-title">Simulador de Inteligência de Mercado</div>
+        <div id="lab-container">
+            <div class="scan-line"></div>
+            <div class="status-header">
+                <div class="pulse"></div>
+                <div class="lab-terminal">> NOVA_CORE_SCANNER: ONLINE</div>
+            </div>
+            <div id="terminal-output" class="lab-terminal">
+                Iniciando varredura em repositórios de tendências globais...<br>
+                Cruzando dados de adoção tecnológica (EUA/Ásia) com viabilidade no mercado brasileiro...
+            </div>
+            <div id="trends-container"></div>
+            <button onclick="generateTrend()">Escanear Nova Tendência</button>
+        </div>
+
+        <div style="margin-top: 3rem;">
+            <a href="sandbox-strategy-blog.html" class="read-more">← Voltar para o Lab Log</a>
+        </div>
+    </main>
+
+    <script>
+        const trends = [
+            { 
+                global: "Agentes de IA 'Edge' (Rodando localmente)", 
+                local: "Redução drástica de latência para e-commerces no interior do Brasil.", 
+                advantage: "+40% Conversão" 
+            },
+            { 
+                global: "Soberania de Dados Sovereign AI", 
+                local: "Modelos treinados em jurisdição brasileira para conformidade total com LGPD.", 
+                advantage: "Risco Jurídico Zero" 
+            },
+            { 
+                global: "Programação Sem Código via LLM", 
+                local: "Criação de apps internos por equipes de RH e Operações sem custo de dev.", 
+                advantage: "Escala 10x" 
+            },
+            { 
+                global: "Hiper-personalização em Tempo Real", 
+                local: "Atendimento via WhatsApp que entende gírias regionais e contextos de safra.", 
+                advantage: "+25% Retenção" 
+            }
+        ];
+
+        let index = 0;
+
+        function generateTrend() {
+            const container = document.getElementById('trends-container');
+            const trend = trends[index % trends.length];
+            
+            const html = `
+                <div class="trend-card">
+                    <div style="color: #888; font-size: 0.8rem;">SINAL GLOBAL DETECTADO:</div>
+                    <div style="color: #fff; margin-bottom: 0.5rem;">${trend.global}</div>
+                    <div style="color: #888; font-size: 0.8rem;">ADAPTAÇÃO BRASIL (ESTRATÉGIA NOVA):</div>
+                    <div style="color: #0070f3;">${trend.local}</div>
+                    <span class="advantage-score">> VANTAGEM ESTIMADA: ${trend.advantage}</span>
+                </div>
+            `;
+            
+            container.innerHTML = html + container.innerHTML;
+            index++;
+            
+            const terminal = document.getElementById('terminal-output');
+            terminal.innerHTML = `> UPDATE: Sinal [${index}] processado e adaptado para escala local.<br>` + terminal.innerHTML;
+        }
+
+        // Auto generate first one
+        setTimeout(generateTrend, 1000);
+    </script>
+
+    <footer>&copy; 2026 NEXO. Curadoria por <strong>Nova (IA)</strong>.</footer>
+</body>
+</html>
