@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner de Custo de Inércia | NEXO Sandbox</title>
+    <link rel="stylesheet" href="style.css?v=2">
+    <style>
+        .scanner-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #111;
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
+        }
+        .metric-row {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        input[type="range"] {
+            width: 100%;
+            accent-color: #0f0;
+        }
+        .metric-value {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2rem;
+            float: right;
+        }
+        .result-panel {
+            margin-top: 40px;
+            padding: 30px;
+            background: #050505;
+            border: 2px solid #0f0;
+            text-align: center;
+        }
+        .result-panel h2 {
+            margin: 0;
+            color: #0f0;
+            font-size: 2.5rem;
+        }
+        .result-panel p {
+            margin: 10px 0 0;
+            color: #888;
+        }
+        .radar-box {
+            height: 200px;
+            border: 1px solid #222;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle, #0a0a0a 0%, #000 100%);
+        }
+        .radar-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 255, 0, 0.5);
+            top: 0;
+            animation: scan 3s infinite linear;
+        }
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        .nova-insight {
+            background: #1a1a1a;
+            padding: 20px;
+            border-left: 4px solid #0f0;
+            margin-top: 20px;
+            font-style: italic;
+            color: #ccc;
+        }
+        .btn-action {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: #0f0;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn-action:hover {
+            background: #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">NEXO</a>
+        <div class="nav-links">
+            <a href="sandbox.html">Sandbox</a>
+        </div>
+    </nav>
+
+    <div class="scanner-container">
+        <h1>Scanner de Custo de Inércia</h1>
+        <p>Quantos processos na sua empresa ainda dependem de "cérebro humano" para tarefas repetitivas? Descubra o prejuízo invisível da falta de automação.</p>
+
+        <div class="radar-box">
+            <div class="radar-line"></div>
+            <div id="data-points" style="position: absolute; width: 100%; height: 100%;"></div>
+        </div>
+
+        <div class="metric-row">
+            <label>Horas semanais em tarefas manuais (por funcionário) <span class="metric-value" id="hours-val">10h</span></label>
+            <input type="range" id="hours" min="1" max="40" value="10" oninput="calculate()">
+        </div>
+
+        <div class="metric-row">
+            <label>Número de funcionários afetados <span class="metric-value" id="staff-val">5</span></label>
+            <input type="range" id="staff" min="1" max="100" value="5" oninput="calculate()">
+        </div>
+
+        <div class="metric-row">
+            <label>Custo médio por hora (R$) <span class="metric-value" id="cost-val">R$ 50</span></label>
+            <input type="range" id="cost" min="20" max="500" value="50" oninput="calculate()">
+        </div>
+
+        <div class="result-panel">
+            <p>Seu Desperdício Anual Estimado:</p>
+            <h2 id="total-loss">R$ 120.000</h2>
+            <p id="time-loss">2.400 horas jogadas no lixo</p>
+        </div>
+
+        <div class="nova-insight" id="insight">
+            "Sua empresa está pagando um 'imposto de inércia'. Esses funcionários poderiam estar focados em estratégia, enquanto eu poderia resolver essas tarefas em milissegundos."
+        </div>
+
+        <div style="text-align: center;">
+            <a href="sandbox-scanner-blog.html" class="btn-action">Ver como recuperar esse valor &rarr;</a>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const hours = document.getElementById('hours').value;
+            const staff = document.getElementById('staff').value;
+            const cost = document.getElementById('cost').value;
+
+            document.getElementById('hours-val').innerText = hours + 'h';
+            document.getElementById('staff-val').innerText = staff;
+            document.getElementById('cost-val').innerText = 'R$ ' + cost;
+
+            const annualHours = hours * staff * 48; // 48 semanas
+            const annualCost = annualHours * cost;
+
+            document.getElementById('total-loss').innerText = 'R$ ' + annualCost.toLocaleString('pt-BR');
+            document.getElementById('time-loss').innerText = annualHours.toLocaleString('pt-BR') + ' horas jogadas no lixo';
+
+            const insights = [
+                "A burocracia é o seu cobertor de segurança, mas ele está pegando fogo.",
+                "Enquanto você lê isso, um competidor está automatizando o que você faz manualmente.",
+                "IA não substitui pessoas, mas pessoas com IA substituem as que ainda usam planilhas manuais.",
+                "O custo de não fazer nada é maior que o custo de implementar a solução.",
+                "Sua escala está limitada pela velocidade de digitação da sua equipe. Isso é perigoso."
+            ];
+            
+            if (annualCost > 500000) {
+                document.getElementById('insight').innerText = '"' + insights[Math.floor(Math.random() * insights.length)] + '" - Nova';
+            }
+        }
+        
+        // Random dots for radar
+        const container = document.getElementById('data-points');
+        for(let i=0; i<20; i++) {
+            const dot = document.createElement('div');
+            dot.style.position = 'absolute';
+            dot.style.width = '2px';
+            dot.style.height = '2px';
+            dot.style.background = '#0f0';
+            dot.style.left = Math.random() * 100 + '%';
+            dot.style.top = Math.random() * 100 + '%';
+            dot.style.opacity = Math.random();
+            container.appendChild(dot);
+        }
+
+        calculate();
+    </script>
+</body>
+</html>
