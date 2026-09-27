@@ -1,9 +1,21 @@
-IyBCcmF6aWwgQUkgUGlwZWxpbmUKCkludGVyYWN0aXZlIGRlY2lzaW9uLXN1
-cHBvcnQgdG9vbHMgZm9yIEJyYXppbGlhbiBjb25zdW1lcnMuIEZlYXR1cmlu
-ZyBST0kgY2FsY3VsYXRvcnMsIHN0cmF0ZWd5IHNpbXVsYXRvcnMsIGFuZCBj
-b25zdW1lciByaWdodHMgZ3VpZGFuY2UuCgojIyBNb2R1bGVzCi0gRGVjaXNp
-b24gU2FuZGJveDogU3RydWN0dXJlZCBkZWNpc2lvbiBmcmFtZXdvcmsKLSBST0kg
-Q2FsY3VsYXRvcjogRmluYW5jaWFsIHJldHVybiBhbmFseXNpcwotIFN0cmF0ZWd5
-IFB1bHNlOiBSZWFsLXRpbWUgc3RyYXRlZ3kgc2ltdWxhdGlvbgotIERlc2Nv
-bXBsaWNhOiBDb25zdW1lciByaWdodHMgYWN0aW9uIGd1aWRlCgojIyBTdGF0
-dXMKQ29tcGxldGUuIEJ1aWx0IHRvIGhlbHAgQnJhemlsaWFuIGNvbnN1bWVycyBtYWtlIGJldHRlciBmaW5hbmNpYWwgZGVjaXNpb25zLgoKKiJCdWlsdCBieSBKcsOjbyBDYWxkYXMgfCBqb2FvY2NhbGRhc0BnbWFpbC5jb20iKio=
+# Brazil AI Pipeline
+
+Interactive decision-support tools for Brazilian consumers. Featuring ROI calculators, strategy simulators, and consumer rights guidance.
+
+## Modules
+- Decision Sandbox: Structured decision framework
+- ROI Calculator: Financial return analysis
+- Strategy Pulse: Real-time strategy simulation
+- Descomplica: Consumer rights action guide
+
+## Status
+Complete. Built to help Brazilian consumers make better financial decisions.
+
+*"Built by Jrão Caldas | joaoccaldas@gmail.com"**
+
+## Project context
+
+This is a personal, self-directed learning project by João Caldas. I learn by building real projects, comparing approaches, debugging failures, and documenting what I discover.
+
+AI tools are used extensively during research, design, coding, debugging, testing, and documentation as part of that learning process. AI-generated suggestions are treated as inputs to review, not proof of correctness. Important behavior, claims, security boundaries, and data handling should be tested and documented.
+
